@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         let config = {
             method: 'get',
             maxBodyLength: Infinity,
-            url: `${process.env.API_URL}/products?pagination[page]=1&pagination[pageSize]=100`,
+            url: `${process.env.API_URL}/products?populate[0]=thumbnail&pagination[page]=1&pagination[pageSize]=100`,
             headers: { }
         };
         const request = await axios(config)
@@ -38,7 +38,7 @@ const generateXML = (allProduct) => {
             <g:id>${product?.id}</g:id>
             <g:price>${product?.attributes?.price} VND</g:price>
             <g:brand>Maldini</g:brand>
-            <g:image_link>""</g:image_link>
+            <g:image_link>https://cdn.dkhgroup.com.vn${product?.attributes?.thumbnail?.data?.attributes?.url}</g:image_link>
             <g:availability>1000</g:availability>
         </item>`;
     });
