@@ -41,7 +41,7 @@ export default function DebugPage(){
         };
 
         const event = {
-            event_name: 'Purchase_all',
+            event_name: 'Purchase_all_1',
             event_time: Math.floor(new Date().getTime() / 1000),
             event_id: eventID,
             user_data: user_data,
@@ -49,7 +49,7 @@ export default function DebugPage(){
         };
 
         try {
-            window.fbq('track', 'Purchase_all', {
+            window.fbq('track', 'Purchase_all_1', {
                 value: 4100000,
                 currency: 'VND',
                 eventID: eventID,

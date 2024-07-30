@@ -38,7 +38,7 @@ export default function DebugPage(){
             status: 'purchased',
         };
 
-        window.fbq('track', 'Purchase_pixel', {
+        window.fbq('track', 'Purchase_pixel_1', {
             value: 4100000,
             currency: 'VND',
             eventID: eventID,

@@ -41,7 +41,7 @@ export default function DebugPage(){
         };
 
         const event = {
-            event_name: 'Purchase_capi',
+            event_name: 'Purchase_capi_1',
             event_time: Math.floor(new Date().getTime() / 1000),
             event_id: eventID,
             user_data: user_data,
