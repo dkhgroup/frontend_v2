@@ -17,11 +17,11 @@ import { Toaster } from 'react-hot-toast';
 import { GoogleAnalytics, usePageViews } from "nextjs-google-analytics";
 import { useRouter } from 'next/router';
 
-import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-api-nextjs/components';
-
 import { Provider } from 'react-redux'
 import { store } from '@/store/store';
 import createEmotionCache from '@/theme/createEmotionCache';
+
+import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-api-nextjs/components';
 
 export default function MyApp(props) {
 

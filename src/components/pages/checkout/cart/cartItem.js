@@ -26,13 +26,15 @@ export default function CartItem({item,setLoading}){
     const match = useMediaQuery('(max-width:720px)')
 
     const handleChangeAttribute = async (event) => {
-        setLoading(true)
+
+        // sử lý sự kiện loading sau
+        // setLoading(true)
         try {
             await changeProperty({property: event.target.value},item.id)
         } catch (error) {
             console.log("🚀 ~ handleChangeAttribute ~ error:", error)
         }
-        setLoading(false)
+        // setLoading(false)
     }
 
     if(match) return(

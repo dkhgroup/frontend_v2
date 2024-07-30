@@ -14,7 +14,7 @@ const getItemCart = (datas) => {
 
     let result = []
 
-    if(!datas) return
+    if (!datas) return
 
     datas?.cart_items?.map(item => {
         result.push({
@@ -38,12 +38,12 @@ const getItemCart = (datas) => {
     return result
 }
 
-export default function CartSection({loadingForm}) {
+export default function CartSection({ loadingForm }) {
 
     const [loading, setLoading] = useState(false)
 
     const { cart, isLoading } = useCart()
-    
+
     const total = getTotalCart(cart)
 
     if (isLoading) return <LoadingCart />
@@ -56,7 +56,7 @@ export default function CartSection({loadingForm}) {
                     <Typography variant="h2" component={"h2"} sx={styles.title}>
                         Giỏ hàng
                     </Typography>
-                    <CartInfo setLoading={setLoading}/>
+                    <CartInfo setLoading={setLoading} />
                     <CartCalc />
                     <LoadingButton
                         variant="contained"

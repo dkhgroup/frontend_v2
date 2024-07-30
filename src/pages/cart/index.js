@@ -8,19 +8,34 @@ export default function CheckOutPage() {
 
     const initialized = useRef(false)
 
-    const {cart,isLoading, mutate} = useCart()
-    
-    useEffect(()=>{
+    const {cart, isLoading} = useCart()
+
+    useEffect(()=>{ 
 
         if(isLoading) return
 
-        if (!initialized.current) {
+        console.log(initialized.current)
+
+        if(!initialized.current){
             initialized.current = true
-            // viewItemEvent(data)
             beginCheckoutEvent(cart)
+            return
         }
+
+        beginCheckoutEvent(cart)
+    },[cart])
+    
+    // useEffect(()=>{
+
+    //     if(isLoading) return
+
+    //     if (!initialized.current) {
+    //         initialized.current = true
+    //         // viewItemEvent(data)
+    //         beginCheckoutEvent(cart)
+    //     }
         
-    },[isLoading])
+    // },[isLoading])
 
     return (
         <>

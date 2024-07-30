@@ -7,7 +7,7 @@ import FooterMain from "./main/footer";
 
 export default function MainLayout({children}){
 
-    // const {device} = useDevice()
+    const {device} = useDevice()
 
     useEffect(()=>{
 

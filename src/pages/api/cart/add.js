@@ -4,7 +4,8 @@ import Cookies from 'cookies'
 
 export default async function handleApi(req, res) {
 
-    if(req?.method !== "POST") return res.status(405).json('Method not allow')
+
+    if (req?.method !== "POST") return res.status(405).json('Method not allow')
 
     const cookies = new Cookies(req, res, {
         secure: process.env.NODE_ENV !== 'development'
@@ -15,17 +16,17 @@ export default async function handleApi(req, res) {
     const token = cookies.get('token')
     const device_id = cookies.get('deviceId')
 
-    if(!device_id) return res.status(403).json('not allow')
+    if (!device_id) return res.status(403).json('not allow')
 
-    let headers = { 
-        'Accept': 'application/json', 
+    let headers = {
+        'Accept': 'application/json',
         'Content-Type': 'application/json',
         'deviceid': device_id,
     }
 
-    if(token){
-        headers = { 
-            'Accept': 'application/json', 
+    if (token) {
+        headers = {
+            'Accept': 'application/json',
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`,
             'deviceid': device_id,
@@ -44,6 +45,7 @@ export default async function handleApi(req, res) {
         const request = await axios(config)
         return res.status(200).json(request.data)
     } catch (error) {
+        console.log("🚀 ~ handleApi ~ error:", error)
         return res.status(403).json(error?.response?.data || [])
     }
 }

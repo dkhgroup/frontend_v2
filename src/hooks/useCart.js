@@ -33,6 +33,7 @@ export function useCart(){
     return{
         cart,
         isLoading,
+        isValidating,
         addToCart,
         removeItemCart,
         changeProperty,

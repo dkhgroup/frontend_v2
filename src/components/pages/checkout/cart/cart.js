@@ -2,8 +2,6 @@ import { Divider, Stack, Typography } from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import CartItem from "./cartItem";
 import { useCart } from "@/hooks/useCart";
-import LoadingSection from "@/components/screen/loadingSection";
-import LoadingCart from "./loadingCart";
 
 export default function CartInfo({setLoading}){
 

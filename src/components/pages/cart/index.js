@@ -54,11 +54,11 @@ export default function CheckOutform() {
                     cartItemIdArr: getCartItem(cart.cart_items)
                 }
                 
-                const createOrder = await create(data)
+                // const createOrder = await create(data)
 
-                purchaseEvent(cart, createOrder.order_code)
+                // purchaseEvent(cart, createOrder.order_code)
 
-                router.push(`/cart/success/${createOrder.order_code}`)
+                // router.push(`/cart/success/${createOrder.order_code}`)
 
             } catch (error) {
                 console.log("🚀 ~ onSubmit: ~ error:", error)

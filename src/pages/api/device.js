@@ -56,7 +56,7 @@ export default async function handler(req, res) {
         })
 
     } catch (error) {
-        console.log("🚀 ~ handler ~ error:", error?.response)
+        console.log("🚀 ~ handler ~ error:", error)
     }
 
     res.status(200).json("success");
