@@ -1,9 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import crypto from 'crypto';
+import { capiConfig } from '@/components/capi/config';
+import axios from 'axios';
 
 const hashData = (data) => {
     return crypto.createHash('sha256').update(data).digest('hex');
 };
+
 export default function DebugPage(){
 
     const handleClick = async () => {
@@ -37,13 +40,35 @@ export default function DebugPage(){
             status: 'purchased',
         };
 
-        window.fbq('track', 'Purchase', {
-            value: 4100000,
-            currency: 'VND',
-            eventID: eventID,
+        const event = {
+            event_name: 'Purchase_all',
+            event_time: Math.floor(new Date().getTime() / 1000),
+            event_id: eventID,
             user_data: user_data,
             custom_data: custom_data
-        });
+        };
+
+        try {
+            window.fbq('track', 'Purchase_all', {
+                value: 4100000,
+                currency: 'VND',
+                eventID: eventID,
+                user_data: user_data,
+                custom_data: custom_data
+            });
+            const response = await axios.post(
+                `https://graph.facebook.com/${capiConfig.api_version}/${capiConfig.pixel_id}/events`,
+                {
+                    data: [event],
+                    access_token: capiConfig.access_token
+                }
+            );
+    
+            console.log(response)
+        } catch (error) {
+            console.log("🚀 ~ handleClick ~ error:", error)
+        }
+        
     }
 
     return (
