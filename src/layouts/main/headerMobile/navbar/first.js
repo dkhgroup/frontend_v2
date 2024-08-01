@@ -1,20 +1,17 @@
 import { useContact } from "@/hooks/useContact";
-import { useNavbar } from "@/hooks/useNavbar";
 import { Box, Stack, Typography, Link } from "@mui/material";
 import { IconChevronRight } from "@tabler/icons-react";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
-export default function FirstItemNavMobile({ setOpen, showChild, setShowChild }) {
+export default function FirstItemNavMobile({ setOpen, showChild, setShowChild,navbar }) {
 
     const router = useRouter()
 
     const { contact, isLoading } = useContact()
 
     const [menus, setMenus] = useState()
-
-    const { navbar } = useNavbar()
 
     const handleClick = (url, id, length) => {
         if(length > 0){

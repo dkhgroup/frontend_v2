@@ -8,7 +8,10 @@ import { createMarkup, formatContent } from "@/components/createMarkup";
 import SeoMetaTag from "@/components/pageConfig/meta";
 import { cdnImage } from "@/components/ui/cdnImage";
 import Toc from "@/components/pages/blog/toc";
-import BreakCrumbDkh from "@/components/ui/breakcrumb";
+
+import FsLightbox from "fslightbox-react";
+import { useEffect, useState } from "react";
+import { getSourceImages } from "@/components/format/sourceImg";
 import MainLayout from "@/layouts/main";
  
 export async function getStaticProps({ params }) {
@@ -17,7 +20,7 @@ export async function getStaticProps({ params }) {
 
     const id = slug.slice(slug.search('_id=') + 4)
 
-    const res = await fetch(`${globalConfig.api_url}/docs/${id}?populate[0]=thumbnail&populate[1]=seo&populate[2]=seo.thumbnail&populate[3]=blog_category`)
+    const res = await fetch(`${globalConfig.api_url}/blogs/${id}?populate[0]=thumbnail&populate[1]=seo&populate[2]=seo.thumbnail&populate[3]=blog_category`)
     const posts = await res.json()
 
     const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
@@ -38,7 +41,7 @@ export async function getStaticProps({ params }) {
 }
 
 export async function getStaticPaths() {
-    const res = await fetch(`${globalConfig.api_url}/docs`)
+    const res = await fetch(`${globalConfig.api_url}/blogs`)
     const posts = await res.json()
    
     // Get the paths we want to pre-render based on posts
@@ -58,8 +61,33 @@ export default function BLogPost({
     footer
 }){
 
+    const [lightboxController, setLightboxController] = useState({
+        toggler: false,
+        slide: 1
+    });
+
+    const [contents,setContents] = useState('')
+
+    useEffect(()=>{
+        setContents(posts?.data?.attributes?.content)
+    },[])
+
+    const content = posts?.data?.attributes?.content
+    const sources = getSourceImages(content)
+
+    const handleClick = async (e) => {
+        const el = e.target
+        if (!el || el.tagName != "IMG") return
+        const number = sources.findIndex(i => i == el.currentSrc)
+        if (number < 0) return
+        setLightboxController({
+            toggler: !lightboxController.toggler,
+            slide: +number + 1
+        });
+    }
+
     return(
-        <MainLayout posts={posts} footer={footer} navbar={navbar}>
+        <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
                 title={posts?.data?.attributes?.seo?.title || posts?.data?.attributes?.title}
                 description={posts?.data?.attributes?.seo?.description || posts?.data?.attributes?.description}
@@ -71,22 +99,18 @@ export default function BLogPost({
                 }
             />
             <Stack spacing={0}>
-
-                <Box py={5} bgcolor={"#f8f8f8"}>
+                <Box bgcolor={"#f8f8f8"}>
                     <Container maxWidth={globalConfig.maxWidth}>
-                        <Stack spacing={2}>
-                            <BreakCrumbDkh 
-                                loops={[{id: 1, text: 'Hướng dẫn sử dụng', link: '/docs'}]}
-                                text={posts?.data?.attributes?.title}
-                            />
-                            <Typography
-                                textTransform={"uppercase"} 
-                                variant="h1" 
-                                component={"h1"} 
-                                fontSize={28} 
-                                fontWeight={700}
-                                color="primary.main"
-                            >
+                        <Stack py={8} spacing={2}>
+                            <Link href={`/category/${posts?.data?.attributes?.blog_category?.data?.attributes?.slug}`}>
+                                <Stack direction={"row"} alignItems={"center"} spacing={1}>
+                                    <WestIcon fontSize="15"/>
+                                    <Typography variant="body2" fontWeight={500}>
+                                        Quay lại trang {posts?.data?.attributes?.blog_category?.data?.attributes?.name}
+                                    </Typography>
+                                </Stack>
+                            </Link>
+                            <Typography variant="h1" component={"h1"}>
                                 {posts?.data?.attributes?.title}
                             </Typography>
                         </Stack>
@@ -96,8 +120,8 @@ export default function BLogPost({
                     <Container maxWidth={globalConfig.maxWidth}>
                         <Grid container spacing={2} justifyContent={"space-between"}>
                             <Grid xs={12} md={7}>
-                                <Box className="post-content">
-                                    <div dangerouslySetInnerHTML={createMarkup(formatContent(posts?.data?.attributes?.content))} /> 
+                                <Box className="post-content" onClick={handleClick}>
+                                    <div dangerouslySetInnerHTML={createMarkup(formatContent(contents))} /> 
                                 </Box>
                             </Grid>
                             <Grid xs={12} md={4}>
@@ -106,7 +130,7 @@ export default function BLogPost({
                                         Mục lục
                                     </Typography>
                                     <Box component={"ul"} className="toc">
-                                        <Toc />
+                                        <Toc contents={contents}/>
                                     </Box>
                                 </Stack>
                             </Grid>
@@ -114,6 +138,11 @@ export default function BLogPost({
                     </Container>
                 </Box>
             </Stack>
+            <FsLightbox
+                toggler={lightboxController.toggler}
+                sources={sources}
+                slide={lightboxController.slide}
+            /> 
         </MainLayout>
     )
 }

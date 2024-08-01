@@ -4,10 +4,10 @@ import { Box } from "@mui/system";
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from "next/image";
 import SearchBoxHeader from "./search";
-import Navbar from "./navbar";
 import IconHeader from "./icon/iconheader";
+import NavItem from "./navItem";
 
-export default function MainNav() {
+export default function MainNav({navbar}) {
     return (
         <Box component={"header"} bgcolor="#ffffff" >
             <Container maxWidth={globalConfig.maxWidth}>
@@ -23,7 +23,13 @@ export default function MainNav() {
                         </Link>
                     </Grid>
                     <Grid xs={7.5} display={{ xs: 'none', lg: 'block' }}>
-                        <Navbar />
+                        <nav>
+                            <ul>
+                                {navbar?.data?.attributes?.items?.data?.map(item =>
+                                    <NavItem key={item.id} item={item} />
+                                )}
+                            </ul>
+                        </nav>
                     </Grid>
                     <Grid xs={2} display={{ xs: 'none', lg: 'block' }}>
                         <SearchBoxHeader />

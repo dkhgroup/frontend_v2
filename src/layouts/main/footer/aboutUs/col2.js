@@ -1,13 +1,8 @@
 import LoadingText from "@/components/screen/loadingText";
-import { useContact } from "@/hooks/useContact";
 import { Link, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
-export default function FooterAboutUsSection2(){
-
-    const {contact, isLoading} = useContact()
-
-    if(isLoading) return
+export default function FooterAboutUsSection2({contact}){
 
     return(
         <Stack spacing={1}>
@@ -27,7 +22,6 @@ export default function FooterAboutUsSection2(){
                     <Typography variant="body2" component={"span"} color="#fff">
                         Hotline
                     </Typography>
-                    {!contact && <LoadingText />}
                     {contact && contact?.data?.attributes?.Hotline?.map(item =>
                         <Link href={`tel:${item?.phone}`} key={item.id}>
                             <Typography fontWeight={700} color="#fff">

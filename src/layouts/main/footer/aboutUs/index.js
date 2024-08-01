@@ -4,7 +4,7 @@ import FooterAboutUsSection1 from "./col1";
 import FooterAboutUsSection2 from "./col2";
 import FooterAboutUsSection3 from "./col3";
 
-export default function FooterAboutUs(){
+export default function FooterAboutUs({footer}){
     return(
         <Box component={"section"} py={4}>
             <Grid 
@@ -14,13 +14,13 @@ export default function FooterAboutUs(){
                 alignItems={"center"}
             >
                 <Grid xs={12} md={5}>
-                    <FooterAboutUsSection1 />
+                    <FooterAboutUsSection1 contact={footer}/>
                 </Grid>
                 <Grid xs={12} md={4}>
-                    <FooterAboutUsSection2 />
+                    <FooterAboutUsSection2 contact={footer}/>
                 </Grid> 
                 <Grid xs={12} md={3}>
-                    <FooterAboutUsSection3 />
+                    <FooterAboutUsSection3 contact={footer}/>
                 </Grid> 
             </Grid>
         </Box>

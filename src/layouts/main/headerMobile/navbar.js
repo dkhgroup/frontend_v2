@@ -4,7 +4,7 @@ import { useState } from "react";
 import FirstItemNavMobile from "./navbar/first";
 import SecondItemNavbar from "./navbar/secound";
 
-export default function NavbarMobile(){
+export default function NavbarMobile({navbar}){
 
     const [open,setOpen] = useState(false)
     const [showChild,setShowChild] = useState(0)
@@ -31,11 +31,13 @@ export default function NavbarMobile(){
                         setOpen={setOpen}
                         setShowChild={setShowChild}
                         showChild={showChild}
+                        navbar={navbar}
                     />
                     <SecondItemNavbar 
                         setOpen={setOpen}
                         setShowChild={setShowChild}
                         showChild={showChild}
+                        navbar={navbar}
                     />
                 </Box>
             </Drawer>

@@ -3,9 +3,10 @@ import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
 import { useEffect, useState } from 'react';
+import _ from 'lodash';
 
-export default function Toc(){
-
+export default function Toc({contents}){
+    
     const [toc,setToc] = useState()
 
     useEffect(()=>{

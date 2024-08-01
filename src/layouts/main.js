@@ -5,7 +5,7 @@ import { useEffect } from "react";
 import { clarity } from 'react-microsoft-clarity';
 import FooterMain from "./main/footer";
 
-export default function MainLayout({children}){
+export default function MainLayout({footer,navbar,children}){
 
     const {device} = useDevice()
 
@@ -39,11 +39,11 @@ export default function MainLayout({children}){
                 bgcolor: '#fff !important'
             }}
         >
-            <HeaderMain />
+            <HeaderMain navbar={navbar}/>
             <Box flex={1}>
                 {children}
             </Box>
-            <FooterMain />
+            <FooterMain footer={footer}/>
         </Stack>
     )
 }

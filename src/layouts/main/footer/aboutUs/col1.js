@@ -1,12 +1,6 @@
-import { useContact } from "@/hooks/useContact";
 import { Stack, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
 
-export default function FooterAboutUsSection1(){
-
-    const {contact, isLoading} = useContact()
-
-    if(isLoading) return
+export default function FooterAboutUsSection1({contact}){
 
     return(
         <Stack spacing={1}>

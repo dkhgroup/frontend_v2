@@ -5,7 +5,7 @@ import SearchIconMobile from "./search";
 import UserIcon from "../header/icon/user";
 import CartIcon from "../header/icon/cart";
 
-export default function HeaderMobile(){
+export default function HeaderMobile({navbar}){
     return(
         <Stack 
             direction={"row"} 
@@ -15,7 +15,7 @@ export default function HeaderMobile(){
             p={1}
         >
              <Stack direction={"row"} spacing={0}>
-                <NavbarMobile />
+                <NavbarMobile navbar={navbar}/>
                 <SearchIconMobile />
              </Stack>
              <Stack flex={1} justifyContent={"center"} alignItems={"center"}>

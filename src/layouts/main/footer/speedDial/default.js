@@ -3,16 +3,11 @@ import { Box, SpeedDial } from '@mui/material';
 import Image from 'next/image';
 import { IconPhone } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
-import { useContact } from '@/hooks/useContact';
 import ScrollToTopBtn from './scrollToTop';
 
-export default function SpeedDialButtonDefault(){
-
-    const {contact, isLoading} = useContact()
+export default function SpeedDialButtonDefault({contact}){
     
     const router = useRouter()
-
-    if(isLoading) return
 
     return(
         <Box 

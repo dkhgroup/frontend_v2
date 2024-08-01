@@ -5,7 +5,7 @@ import FooterInfotSection2 from "./col2";
 import FooterInfotSection3 from "./col3";
 import FooterInfotSection4 from "./col4.";
 
-export default function FooterInfo(){
+export default function FooterInfo({footer}){
     return(
         <Box component={"section"} py={4}>
             <Grid 
@@ -13,7 +13,7 @@ export default function FooterInfo(){
                 spacing={5} 
             >
                 <Grid xs={12} md={4.5}>
-                    <FooterInfotSection1 />
+                    <FooterInfotSection1 contact={footer}/>
                 </Grid>
                 <Grid xs={12} md={2.5}>
                     <FooterInfotSection2 />

@@ -1,14 +1,12 @@
-import { useNavbar } from "@/hooks/useNavbar";
 import { Box, Button, Stack, Typography } from "@mui/material";
 import { IconChevronRight } from "@tabler/icons-react";
 import { useRouter } from "next/router";
 import WestIcon from '@mui/icons-material/West';
 
-export default function SecondItemNavbar({setOpen,setShowChild,showChild}){
+export default function SecondItemNavbar({setOpen,setShowChild,showChild,navbar}){
 
     const router = useRouter()
 
-    const { navbar } = useNavbar()
     const data = navbar?.data?.attributes?.items?.data
     
     const handleClick = (url) => {

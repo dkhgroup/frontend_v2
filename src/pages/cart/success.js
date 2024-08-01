@@ -9,26 +9,31 @@ import OrderInfo from "@/components/pages/cart/success/orderInfo"
 import { useRouter } from "next/router"
 import LoadingSection from "@/components/screen/loadingSection"
 import { useOrderCheck } from "@/hooks/useOrderCheck"
+import { globalConfig } from "@/theme/globalConfig"
+import MainLayout from "@/layouts/main"
+import EmptyContent from "@/components/ui/empty"
 
-export default function SuccessOrderPage(){
-    const {cart, mutate} = useCart()
+export default function SuccessOrderPage({
+    navbar,
+    footer
+}){
 
     const router = useRouter()
 
-    const {thisOrder,isLoading} = useOrderCheck(router?.query?.slug)
-
-    useEffect(()=>{
-        mutate()
-    },[])
+    const {thisOrder,isLoading} = useOrderCheck(router?.query?.code)
 
     return(
-        <>
+        <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
                 title="Đặt hàng thành công"
                 description="Đặt hàng thành công tại DKH Group Website"
             />
 
-            {isLoading ? <LoadingSection /> :
+            {isLoading && <LoadingSection />}
+
+            {!isLoading && !thisOrder && <EmptyContent title="Nội dung không tồn tại. Vui lòng quay lại trang chủ hoặc liên hệ admin để biết thêm chi tiết" />}
+            
+            {!isLoading && thisOrder &&
                 <Container maxWidth={'lg'}>
                     <Stack spacing={3} py={{xs:2,md:4}} id="print-area">
                         <Stack justifyContent={"center"} alignItems={"center"} spacing={2}>
@@ -73,6 +78,25 @@ export default function SuccessOrderPage(){
                     </Stack>
                 </Container>
             }
-        </>
+        </MainLayout>
     )
+}
+
+export async function getStaticProps() {
+  
+    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+    const getNavBar = await fetch(urlNavbar)
+    const getFooter = await fetch(urlFooter)
+    const navbar = await getNavBar.json()
+    const footer = await getFooter.json()
+
+   
+    return {
+      props: {
+        navbar,
+        footer
+      },
+      revalidate: globalConfig.revalidateTime,
+    }
 }

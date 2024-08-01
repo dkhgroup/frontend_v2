@@ -8,7 +8,7 @@ import { useAuth } from "@/hooks/useAuth";
 import { useRouter } from "next/router";
 import LoadingScreen from "@/components/screen/loading";
 
-export default function AccountLayout({children}){
+export default function AccountLayout({navbar,footer,children}){
 
     const {userData, isLoading} = useAuth()
 
@@ -29,7 +29,7 @@ export default function AccountLayout({children}){
             width={"100%"}
             flexDirection={"column"}
         >
-            <HeaderMain userData={userData}/>
+            <HeaderMain userData={userData} navbar={navbar}/>
             <Box flex={1} py={8}>
                 <Container maxWidth={globalConfig.maxWidth}>
                     <Grid container spacing={2} justifyContent={"space-between"}>
@@ -42,7 +42,7 @@ export default function AccountLayout({children}){
                     </Grid>
                 </Container>
             </Box>
-            <FooterMain />
+            <FooterMain footer={footer}/>
         </Stack>
     )
 }

@@ -6,17 +6,18 @@ import FeatureProductMobile from "@/components/pages/home/featuredMobile";
 import HomepageMobileProductCategories from "@/components/pages/home/mobile/category";
 // import HomepageMobileProductCategories from "@/components/pages/home/mobile/category";
 import HomeSlide from "@/components/slide/home";
+import MainLayout from "@/layouts/main";
 import { convertPopulateParams } from "@/params/convert";
 import { homepageParams, productParams } from "@/params/products";
 import { globalConfig } from "@/theme/globalConfig";
 import { Container, useMediaQuery } from "@mui/material";
 
-export default function IndexPage({homepageDatas,homepageProducts}){
+export default function IndexPage({homepageDatas,homepageProducts,navbar,footer}){
 
   const matches = useMediaQuery('(max-width:920px)');
 
   return (
-    <>
+    <MainLayout navbar={navbar} footer={footer}>
       <SeoMetaTag
           title={homepageDatas?.data?.attributes?.seo?.title || "DKH Group"}
           description={
@@ -36,14 +37,24 @@ export default function IndexPage({homepageDatas,homepageProducts}){
       </Container>
 
       {matches && <HomepageMobileProductCategories categories={homepageDatas?.data?.attributes?.product_categories}/>}
-    </>
+    </MainLayout>
   );
 }
 
 export async function getStaticProps() {
+  
+  const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+  const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+  const getNavBar = await fetch(urlNavbar)
+  const getFooter = await fetch(urlFooter)
+  const navbar = await getNavBar.json()
+  const footer = await getFooter.json()
+  
+  
   const url1 = `${globalConfig.api_url}/homepage?${convertPopulateParams(homepageParams)}`
   const url2 = `${globalConfig.api_url}/products?${convertPopulateParams(productParams)}&pagination[page]=1&pagination[pageSize]=8&sort[0]=sort_number:asc&sort[1]=id:desc`
-  
+
+
   const getHomepageDatas = await fetch(url1)
   const getHomepageProducts = await fetch(url2)
 
@@ -53,7 +64,9 @@ export async function getStaticProps() {
   return {
     props: {
       homepageDatas,
-      homepageProducts
+      homepageProducts,
+      navbar,
+      footer
     },
     revalidate: globalConfig.revalidateTime,
   }

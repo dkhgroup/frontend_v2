@@ -3,11 +3,12 @@ import AboutUsSection from "@/components/pages/about/about"
 import ContactSection from "@/components/pages/about/contact"
 import AboutUsHeroSection from "@/components/pages/about/hero"
 import { cdnImage } from "@/components/ui/cdnImage"
+import MainLayout from "@/layouts/main"
 import { globalConfig } from "@/theme/globalConfig"
 
-export default function AboutUsPage({post}){
-    return(
-        <>
+export default function AboutUsPage({ post,navbar,footer }) {
+    return (
+        <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
                 title={post?.data?.attributes?.seo?.title || "DKH Group"}
                 description={
@@ -16,14 +17,21 @@ export default function AboutUsPage({post}){
                 }
                 thumbnail={cdnImage(post?.data?.attributes?.seo?.thumbnail?.data?.attributes?.url)}
             />
-            <AboutUsHeroSection post={post}/>
+            <AboutUsHeroSection post={post} />
             <AboutUsSection post={post} />
             <ContactSection post={post} />
-        </>
+        </MainLayout>
     )
 }
 
 export async function getStaticProps() {
+
+    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+    const getNavBar = await fetch(urlNavbar)
+    const getFooter = await fetch(urlFooter)
+    const navbar = await getNavBar.json()
+    const footer = await getFooter.json()
 
     const url = `${globalConfig.api_url}/about?populate[0]=thumbnail&populate[1]=email&populate[2]=hotline&populate[3]=seo&populate[4]=seo.thumbnail`
     const getData = await fetch(url)
@@ -32,7 +40,9 @@ export async function getStaticProps() {
 
     return {
         props: {
-          post,
+            post,
+            navbar,
+            footer
         },
         revalidate: globalConfig.revalidateTime,
     }

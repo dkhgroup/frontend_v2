@@ -21,6 +21,7 @@ import CartBarDesktop from "../../product-detail/cartBar/desktop";
 import { formatDataGallery,getAttributeName,getAttributes } from "@/components/func/product";
 import CartBarMobile from "../../product-detail/cartBar/mobile";
 import { addToCartEvent } from "@/components/ga4";
+import { addToCartFBEvent } from "@/components/capi/event";
 
 export default function InfoProductDetail({data}){
 
@@ -41,8 +42,12 @@ export default function InfoProductDetail({data}){
             qty: 1
         },
         onSubmit: async (values) => {
+            
+            
             setLoading(true)
+            
             try {
+                const thisAttributes = data?.attributes?.find(el => el?.property?.id === selectAttribute)
 
                 await addToCart({
                     "san_pham": data.id,
@@ -52,15 +57,15 @@ export default function InfoProductDetail({data}){
 
                 let params = {
                     currency: 'VND',
-                    value: +data?.price,
+                    value: +data?.price * values.qty,
                     items: [
                         {
-                            item_id: data?.attributes?.find(i => i.property.id == selectAttribute)?.sku, // sửa sau
+                            item_id: thisAttributes?.sku,
                             item_name: data?.name,
                             discount: 0,
                             index: +data?.id,
                             item_brand: 'Maldini',
-                            item_variant: data?.attributes?.find(i => i.property.id == selectAttribute)?.property?.name,
+                            item_variant: thisAttributes?.property?.name,
                             price: +data?.price,
                             quantity: 1
                         }
@@ -68,6 +73,13 @@ export default function InfoProductDetail({data}){
                 }
 
                 addToCartEvent(params)
+
+                await addToCartFBEvent(
+                    +data?.price * values.qty,
+                    thisAttributes?.sku,
+                    values.qty,
+                    +data?.price
+                )
 
                 const miniCartData = getAttributes(data,selectAttribute)
                 dispatch(showMiniCart(miniCartData))

@@ -30,6 +30,10 @@ export function useCart(){
         await mutate()
     }
 
+    async function emptyCart(){
+        await mutate(null,false)
+    }
+
     return{
         cart,
         isLoading,
@@ -38,6 +42,7 @@ export function useCart(){
         removeItemCart,
         changeProperty,
         changeQty,
-        mutate
+        mutate,
+        emptyCart
     }
 }

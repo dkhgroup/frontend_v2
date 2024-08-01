@@ -3,13 +3,18 @@ import SeoMetaTag from "@/components/pageConfig/meta"
 import ListPost from "@/components/pages/page/list"
 import BreakCrumbDkh from "@/components/ui/breakcrumb"
 import { cdnImage } from "@/components/ui/cdnImage"
+import MainLayout from "@/layouts/main"
 import { globalConfig } from "@/theme/globalConfig"
 import { Box, Container, Stack, Typography } from "@mui/material"
 import Grid from '@mui/material/Unstable_Grid2';
 
-export default function StaticPage({posts}){
+export default function StaticPage({
+    posts,
+    navbar,
+    footer
+}){
     return(
-        <>
+        <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
                 title={posts?.data?.attributes?.seo?.title || posts?.data?.attributes?.title}
                 description={posts?.data?.attributes?.seo?.description || posts?.data?.attributes?.description}
@@ -54,7 +59,7 @@ export default function StaticPage({posts}){
                     </Grid>
                 </Container>
             </Box>
-        </>
+        </MainLayout>
     )
 }
 
@@ -65,10 +70,19 @@ export async function getStaticProps({ params }) {
 
     const res = await fetch(`${globalConfig.api_url}/static-pages/${id}??populate[0]=thumbnail&populate[1]=seo&populate[2]=seo.thumbnail`)
     const posts = await res.json()
+
+    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+    const getNavBar = await fetch(urlNavbar)
+    const getFooter = await fetch(urlFooter)
+    const navbar = await getNavBar.json()
+    const footer = await getFooter.json()
    
     return {
       props: {
         posts,
+        navbar,
+        footer
       },
       revalidate: globalConfig.revalidateTime, // In seconds
     }

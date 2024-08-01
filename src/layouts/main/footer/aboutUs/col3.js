@@ -1,13 +1,9 @@
 import { cdnImage } from "@/components/ui/cdnImage";
-import { useContact } from "@/hooks/useContact";
 import { Skeleton, Stack,Link } from "@mui/material";
 import Image from "next/image";
 
-export default function FooterAboutUsSection3(){
+export default function FooterAboutUsSection3({contact}){
     
-    const {contact, isLoading} = useContact()
-
-    if(isLoading) return
 
     return(
         <Stack 

@@ -6,7 +6,7 @@ import FooterCopyRight from "./copyRight"
 import SpeedDialButtonDefault from "./speedDial/default"
 import MiniCart from "@/components/cart/miniCart"
 
-export default function FooterMain() {
+export default function FooterMain({footer}) {
     return (
         <>
             <Stack
@@ -16,13 +16,13 @@ export default function FooterMain() {
                 }}
             >
                 <Container maxWidth={globalConfig.maxWidth}>
-                    <FooterAboutUs />
+                    <FooterAboutUs footer={footer}/>
                     <Divider sx={{ my: .5, bgcolor: '#666666' }} />
-                    <FooterInfo />
+                    <FooterInfo footer={footer}/>
                     <Divider sx={{ my: .5, bgcolor: '#666666' }} />
-                    <FooterCopyRight />
+                    <FooterCopyRight contact={footer}/>
                 </Container>
-                <SpeedDialButtonDefault />
+                <SpeedDialButtonDefault contact={footer}/>
             </Stack>
             <MiniCart />
         </>

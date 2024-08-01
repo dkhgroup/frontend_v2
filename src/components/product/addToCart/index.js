@@ -8,6 +8,7 @@ import { useAppDispatch } from "@/store/hook";
 import { cdnImage } from "@/components/ui/cdnImage";
 import { addToCartEvent } from "@/components/ga4";
 import { getAttributeName } from "@/components/func/product";
+import { addToCartFBEvent } from "@/components/capi/event";
 
 async function getAttributes(data,selectAttribute){
     let result;
@@ -36,7 +37,10 @@ export default function AddToCart(props){
     const dispatch = useAppDispatch()
 
     const handleAddToCart = async () => {
+
         setLoading(true)
+
+        const thisAttributes = props?.data?.attributes?.find(el => el?.property?.data?.id === props?.selectAttribute)
 
         try {
             await addToCart({
@@ -52,13 +56,13 @@ export default function AddToCart(props){
                 value: +props?.data?.price,
                 items: [
                     {
-                        item_id: props?.data?.sku, // sửa sau
+                        item_id: thisAttributes?.sku, 
                         item_name: props?.data?.name,
                         discount: 0,
                         index: +props?.id,
                         item_brand: 'Maldini',
                         item_category: props?.data?.product_categories?.data[0]?.attributes?.name,
-                        item_variant: getAttributeName(props.selectAttribute,props.data?.attributes),
+                        item_variant: thisAttributes?.property?.data?.attributes?.name,
                         price: +props?.data?.price,
                         quantity: 1
                     }
@@ -66,6 +70,13 @@ export default function AddToCart(props){
             }
 
             addToCartEvent(params)
+
+            await addToCartFBEvent(
+                +props?.data?.price * 1,
+                thisAttributes?.sku,
+                1,
+                +props?.data?.price
+            )
 
             const miniCartData = await getAttributes(props.data,props.selectAttribute)
 

@@ -1,15 +1,10 @@
 import { cdnImage } from "@/components/ui/cdnImage";
-import { useContact } from "@/hooks/useContact";
 import { Box, Stack, Typography, Link } from "@mui/material";
 import Grid from '@mui/material/Unstable_Grid2';
 import Image from "next/image";
 import { calcHeight } from "@/components/format/calcHeight";
 
-export default function FooterCopyRight(){
-
-    const {contact, isLoading} = useContact()
-
-    if(isLoading) return
+export default function FooterCopyRight({contact}){
 
     return(
         <Box component={"section"} py={4}>

@@ -1,11 +1,12 @@
 import SeoMetaTag from "@/components/pageConfig/meta";
+import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/globalConfig";
 import { Container, Stack, Typography } from "@mui/material";
 import Image from "next/image";
 
-export default function NotFoundPage() {
+export default function NotFoundPage({navbar,footer}) {
     return (
-        <>
+        <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
                 title="DKH Group Not Found"
                 description="DKH Group không tìm thấy nội dung bạn đang truy cập"
@@ -26,6 +27,25 @@ export default function NotFoundPage() {
                     </Typography>
                 </Stack>
             </Container>
-        </>
+        </MainLayout>
     )
+}
+
+export async function getStaticProps() {
+  
+    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+    const getNavBar = await fetch(urlNavbar)
+    const getFooter = await fetch(urlFooter)
+    const navbar = await getNavBar.json()
+    const footer = await getFooter.json()
+
+   
+    return {
+      props: {
+        navbar,
+        footer
+      },
+      revalidate: globalConfig.revalidateTime,
+    }
 }

@@ -1,4 +1,3 @@
-import SeoMetaTag from "@/components/pageConfig/meta";
 import CartSection from "@/components/pages/checkout/cart";
 import CheckOutForm from "@/components/pages/checkout/form";
 import LoadingSection from "@/components/screen/loadingSection";
@@ -15,14 +14,16 @@ import { getTotalCart,getDefaultAddress,formatCartItem,getCartItem } from "@/com
 import { useOrder } from "@/hooks/useOrder";
 import { useRouter } from "next/router";
 import { purchaseEvent } from "@/components/ga4";
+import { purchaseFBEvent } from "@/components/capi/event";
+import { regions } from "@/components/address/regions";
 
 export default function CheckOutform() {
 
-    const {cart,isLoading, mutate} = useCart()
+    const {cart,isLoading, mutate, emptyCart} = useCart()
 
     const [loadingForm,setLoadingForm] = useState(false)
 
-    const {addressBooks} = useAddressBook()
+    const {addressBooks, isLoading:loadingAddressBook} = useAddressBook()
     const defaultAddress = getDefaultAddress(addressBooks)
 
     const {orders,create} = useOrder()
@@ -42,6 +43,7 @@ export default function CheckOutform() {
         },
         validationSchema: checkoutValidation,
         onSubmit: async (values) => {
+
             setLoadingForm(true)
             try {
                 const data = {
@@ -54,11 +56,22 @@ export default function CheckOutform() {
                     cartItemIdArr: getCartItem(cart.cart_items)
                 }
                 
-                // const createOrder = await create(data)
+                const createOrder = await create(data)
 
-                // purchaseEvent(cart, createOrder.order_code)
+                purchaseEvent(cart, createOrder.order_code)
 
-                // router.push(`/cart/success/${createOrder.order_code}`)
+                // handle event fb
+                await purchaseFBEvent(
+                    values.email,
+                    values.phone,
+                    regions.find(el => el.id = values.region).name,
+                    cart,
+                    createOrder.order_code
+                )
+
+                await emptyCart()
+
+                router.push(`/cart/success?code=${createOrder.order_code}`)
 
             } catch (error) {
                 console.log("🚀 ~ onSubmit: ~ error:", error)

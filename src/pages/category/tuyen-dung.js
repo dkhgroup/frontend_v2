@@ -2,12 +2,13 @@ import SeoMetaTag from "@/components/pageConfig/meta";
 import PostCategoryBreadCrumb from "@/components/post/breakcrumbs"
 import LastPost from "@/components/post/lastPost";
 import EmptyContent from "@/components/ui/empty";
+import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/globalConfig"
 import { Stack, Container, Typography } from "@mui/material"
 
-export default function TuyenDungPage({ posts,category }){
+export default function TuyenDungPage({ posts,category,footer,navbar }){
     return(
-        <>
+        <MainLayout footer={footer} navbar={navbar}>
             <SeoMetaTag
                 title={category?.data?.attributes?.name}
                 description={category?.data?.attributes?.description}
@@ -39,7 +40,7 @@ export default function TuyenDungPage({ posts,category }){
                     </Container>
                 </Stack>
             </Stack>
-        </>
+        </MainLayout>
         
     )
 }
@@ -50,11 +51,20 @@ export async function getStaticProps() {
 
     const res2 = await fetch(`${globalConfig.api_url}/blog-categories/2`)
     const category = await res2.json()
+
+    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
+    const getNavBar = await fetch(urlNavbar)
+    const getFooter = await fetch(urlFooter)
+    const navbar = await getNavBar.json()
+    const footer = await getFooter.json()
    
     return {
       props: {
         posts,
-        category
+        category,
+        navbar,
+        footer
       },
       revalidate: 10, // In seconds
     }

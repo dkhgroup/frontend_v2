@@ -8,7 +8,6 @@ import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import theme from '@/theme/theme';
 
-import MainLayout from '@/layouts/main';
 import axiosClient from '@/axiosConfig/axiosClient';
 import { SWRConfig } from 'swr';
 
@@ -22,6 +21,7 @@ import { store } from '@/store/store';
 import createEmotionCache from '@/theme/createEmotionCache';
 
 import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-api-nextjs/components';
+import EmptyLayout from '@/layouts/empty';
 
 export default function MyApp(props) {
 
@@ -29,7 +29,7 @@ export default function MyApp(props) {
 
   const { Component, pageProps } = props;
 
-  const Layout = Component.Layout ?? MainLayout
+  const Layout = Component.Layout ?? EmptyLayout
 
   const router = useRouter()
 
