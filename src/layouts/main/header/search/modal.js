@@ -9,6 +9,7 @@ import { useSearchProduct } from "@/hooks/useSearchProduct";
 import SearchProductInput from "./input";
 import KeywordSearchProduct from "./keyword";
 import ResultSearch from "./result";
+import searchEvent from "@/components/ga4";
 
 export default function SearchModal({open,setOpen}){
 
@@ -30,6 +31,7 @@ export default function SearchModal({open,setOpen}){
 
                 const request = await axiosClient.get(`/open/products?${convertPopulateParams(productParams)}&filters[name][$contains]=${values.keyword}`)
                 setProducts(request?.data)
+                searchEvent(values.keyword)
 
             } catch (error) {
                 console.log("🚀 ~ onSubmit: ~ error:", error)

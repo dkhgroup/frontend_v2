@@ -21,12 +21,14 @@ export function useCart(){
     }
 
     async function changeProperty(data,id){
-        await axiosClient.put(`/cart/change-property/${id}`,data)
-        await mutate()
+        // sửa cái này
+        const check = await axiosClient.put(`/cart/change-property/${id}`,data)
+        await mutate(check, false)
     }
 
     async function changeQty(data,id){
-        await axiosClient.put(`/cart/change-qty/${id}`,data)
+        // sửa cái này
+        const check = await axiosClient.put(`/cart/change-qty/${id}`,data)
         await mutate()
     }
 

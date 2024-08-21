@@ -4,10 +4,20 @@ import Image from 'next/image';
 import { IconPhone } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
 import ScrollToTopBtn from './scrollToTop';
+import { clickHotlineBtn, clickZaloBtn } from '@/components/ga4';
 
 export default function SpeedDialButtonDefault({contact}){
     
     const router = useRouter()
+
+    const clickZalo = (zaloId) => {
+        clickZaloBtn()
+        router.push(`https://zalo.me/${zaloId}`)
+    }
+    const clickHotline = (hotline) => {
+        clickHotlineBtn()
+        router.push(`tel:/${hotline}`)
+    }
 
     return(
         <Box 
@@ -35,13 +45,13 @@ export default function SpeedDialButtonDefault({contact}){
                 <SpeedDialAction
                     icon={<IconPhone color='#ED3237'/>}
                     tooltipTitle={`Hotline: ${contact?.data?.attributes?.hotline_main || '0963863459'}`}
-                    onClick={() => router.push(`tel:${contact?.data?.attributes?.hotline_main1 || '0963863459'}`)}
+                    onClick={() => clickHotline(contact?.data?.attributes?.hotline_main1 || '0963863459')}
                 />
 
                 <SpeedDialAction
                     icon={<Image src={"/assets/zalo-icon.svg"} width={30} height={30} alt="Zalo"/>}
                     tooltipTitle={`Zalo: ${contact?.data?.attributes?.zalo_main}`}
-                    onClick={() => router.push(`https://zalo.me/${contact?.data?.attributes?.zalo_main}`)}
+                    onClick={() => clickZalo(contact?.data?.attributes?.zalo_main)}
                 />
 
             </SpeedDial>

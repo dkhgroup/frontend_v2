@@ -12,7 +12,8 @@ export function useOrder(){
 
     async function create(data){
         const createOrder = await axiosClient.post('/orders/create', data)
-        // await mutate()
+        console.log("createOrder",createOrder)
+        await mutate(undefined, false)
         return createOrder
     }
 

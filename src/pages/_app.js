@@ -22,6 +22,7 @@ import createEmotionCache from '@/theme/createEmotionCache';
 
 import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-api-nextjs/components';
 import EmptyLayout from '@/layouts/empty';
+import Script from 'next/script';
 
 export default function MyApp(props) {
 
@@ -70,6 +71,7 @@ export default function MyApp(props) {
                   <FBPixelProvider>
                     <Component {...pageProps} />
                   </FBPixelProvider>
+                  <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
               </Layout>
             </Provider>
           <Toaster position="top-right" />

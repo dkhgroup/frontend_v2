@@ -1,6 +1,6 @@
 import SeoMetaTag from "@/components/pageConfig/meta"
 import { useCart } from "@/hooks/useCart"
-import { Button, Container, Stack, Typography } from "@mui/material"
+import { Button, Container, Link, Stack, Typography } from "@mui/material"
 import { IconArrowLeft, IconPrinter, IconRosetteDiscountCheckFilled } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 import Grid from '@mui/material/Unstable_Grid2';
@@ -63,7 +63,8 @@ export default function SuccessOrderPage({
                     <Stack direction={{xs: "column", md: "row"}} spacing={2} mb={3} justifyContent={"space-between"} alignItems={"center"}>
                         <Button 
                             variant="contained"
-                            onClick={() => router.push('/')}
+                            component={Link}
+                            href="/"
                             startIcon={<IconArrowLeft size={18}/>}
                         >
                             Quay lại trang chủ

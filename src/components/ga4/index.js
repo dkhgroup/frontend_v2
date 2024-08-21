@@ -149,3 +149,34 @@ export function purchaseEvent(data,transaction_id){
     
     event("purchase", params)
 }
+
+export function searchEvent(keyword){
+    event("search", {
+        search_term: keyword
+    })
+}
+
+export function clickZaloBtn(){
+    event("click_icon_zaloOA",{
+        'event_category': 'engagement',
+        'event_label': 'Zalo Click'
+    })
+}
+
+export function clickHotlineBtn(){
+    event("click_icon_hotline",{
+        'event_category': 'engagement',
+        'event_label': 'Hotline Click'
+    })
+}
+
+export function clickZaloBtnProductDetail(){
+    event("click_icon_zaloOA_product",{
+        'event_category': 'engagement',
+        'event_label': 'Zalo Click Product'
+    })
+}
+
+export function eventYoutube(eventName, data){
+    event(eventName,data)
+}

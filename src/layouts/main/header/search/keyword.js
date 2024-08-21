@@ -1,4 +1,5 @@
 import axiosClient from "@/axiosConfig/axiosClient";
+import searchEvent from "@/components/ga4";
 import { convertPopulateParams } from "@/params/convert";
 import { productParams } from "@/params/products";
 import { Chip, Stack, Typography } from "@mui/material";
@@ -11,6 +12,7 @@ export default function KeywordSearchProduct({...props}){
         try {
             const request = await axiosClient.get(`/open/products?${convertPopulateParams(productParams)}&filters[product_categories][$eq]=${id}`)
             props.setProducts(request?.data)
+            searchEvent(keyword)
         } catch (error) {
             toast.error('Có lỗi, vui lòng thử lại sau', {
                 duration: 4000,

@@ -288,7 +288,6 @@ export async function initiateCheckoutFBEvent(cart){
             }
         );
 
-        console.log(response)
     } catch (error) {
         console.log("🚀 ~ handleClick ~ error:", error)
     }

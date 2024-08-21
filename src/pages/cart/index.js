@@ -5,22 +5,32 @@ import CheckOutform from "@/components/pages/cart";
 import { useCart } from "@/hooks/useCart";
 import MainLayout from "@/layouts/main";
 import { globalConfig } from "@/theme/globalConfig";
-import { useEffect } from "react";
+import { useEffect, useMemo, useRef } from "react";
 
 export default function CheckOutPage({
     navbar,
     footer
 }) {
 
+    const newLoad = useRef(true)
+
     const {cart} = useCart()
 
+    const initCart = useMemo(()=>{
+        return cart
+    }, [cart])
+
     useEffect(()=>{
-        return () => {
-            if(!cart) return
-            beginCheckoutEvent(cart)
-            initiateCheckoutFBEvent(cart)
+
+        if(!initCart) return
+
+        if( newLoad.current === false){
+            beginCheckoutEvent(initCart)
+            initiateCheckoutFBEvent(initCart)
         }
-    },[cart])
+
+        return () => newLoad.current = false
+    },[initCart])   
 
     return (
         <MainLayout navbar={navbar} footer={footer}>
