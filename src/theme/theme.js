@@ -2,9 +2,9 @@ import { createTheme } from '@mui/material/styles';
 import { red } from '@mui/material/colors';
 import { shadows } from "./shadows";
 
-import { Roboto_Slab } from 'next/font/google';
+import { Inter } from 'next/font/google';
 
-export const inter = Roboto_Slab({
+export const inter = Inter({
     weight: ['400', '500', '600', '700'],
     subsets: ['latin'],
     display: 'swap',

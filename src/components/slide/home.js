@@ -30,6 +30,7 @@ export default function HomeSlide({datas}){
                     }}
                     navigation={!match}
                     modules={[Autoplay, Pagination, Navigation]}
+                    // modules={[ Pagination, Navigation]}
                     autoplay={{
                         delay: 2500,
                         disableOnInteraction: true,

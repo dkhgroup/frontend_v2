@@ -26,7 +26,7 @@ export default function FooterCopyRight({contact}){
                     <Stack 
                         direction={"row"} 
                         spacing={2} 
-                        justifyContent={{xs: "flex-start", md: "flex-end"}} 
+                        justifyContent={"center"} 
                         alignItems={"center"}
                     >
                         {contact && contact?.data?.attributes?.img_copyright?.map(item => 
@@ -36,9 +36,9 @@ export default function FooterCopyRight({contact}){
                                     width={calcHeight(
                                         item?.image?.data?.attributes?.height,
                                         item?.image?.data?.attributes?.width,
-                                        33
+                                        48
                                     )}
-                                    height={33}
+                                    height={48}
                                     alt="Tín nhiệm mạng - DKH Group"
                                 />
                             </Link>

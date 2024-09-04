@@ -61,12 +61,12 @@ export default function DefaultSlide({
 const styles = {
     circle: {
         width: {
-            xs: '100vw',
-            lg: 360
+            xs: '95vw',
+            lg: 400
         },
         height: {
-            xs: '100vw',
-            lg: 360
+            xs: '95vw',
+            lg: 400
         },
         borderRadius: 360,
         zIndex: 1,
@@ -78,6 +78,7 @@ const styles = {
         top: 0,
         left: 0,
         bottom: 0,
+        right: 0,
         zIndex: 2,
         display: 'flex',
         justifyContent: 'center',
@@ -85,7 +86,7 @@ const styles = {
         '& img': {
             width: {
                 xs: '90vw',
-                lg: 'auto'
+                lg: '70%'
             },
             height: 'auto'
         }
