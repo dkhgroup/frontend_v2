@@ -18,9 +18,7 @@ export async function getStaticProps({ params }) {
 
     const slug = params?.slug
 
-    const id = slug.slice(slug.search('_id=') + 4)
-
-    const res = await fetch(`${globalConfig.api_url}/blogs/${id}?populate[0]=thumbnail&populate[1]=seo&populate[2]=seo.thumbnail&populate[3]=blog_category`)
+    const res = await fetch(`${globalConfig.api_url}/blogs/?filters[slug][$eq]=${slug}&populate[0]=thumbnail&populate[1]=seo&populate[2]=seo.thumbnail&populate[3]=blog_category`)
     const posts = await res.json()
 
     const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
@@ -32,7 +30,7 @@ export async function getStaticProps({ params }) {
    
     return {
       props: {
-        posts,
+        posts: posts.data[0],
         navbar,
         footer
       },
@@ -47,8 +45,7 @@ export async function getStaticPaths() {
     // Get the paths we want to pre-render based on posts
     const paths = posts?.data?.map((post) => ({
         params: { 
-            id: post.id,
-            slug: `${post.slug}_id=${post.id}`
+            slug: `${post.slug}`
         },
     }))
    
@@ -60,7 +57,6 @@ export default function BLogPost({
     navbar,
     footer
 }){
-
     const [lightboxController, setLightboxController] = useState({
         toggler: false,
         slide: 1
@@ -69,10 +65,10 @@ export default function BLogPost({
     const [contents,setContents] = useState('')
 
     useEffect(()=>{
-        setContents(posts?.data?.attributes?.content)
+        setContents(posts?.attributes?.content)
     },[])
 
-    const content = posts?.data?.attributes?.content
+    const content = posts?.attributes?.content
     const sources = getSourceImages(content)
 
     const handleClick = async (e) => {
@@ -89,12 +85,12 @@ export default function BLogPost({
     return(
         <MainLayout navbar={navbar} footer={footer}>
             <SeoMetaTag
-                title={posts?.data?.attributes?.seo?.title || posts?.data?.attributes?.title}
-                description={posts?.data?.attributes?.seo?.description || posts?.data?.attributes?.description}
+                title={posts?.attributes?.seo?.title || posts?.attributes?.title}
+                description={posts?.attributes?.seo?.description || posts?.attributes?.description}
                 thumbnail={
                     cdnImage(
-                        posts?.data?.attributes?.seo?.thumbnail?.data?.attributes?.url ||
-                        posts?.data?.attributes?.thumbnail?.data?.attributes?.url
+                        posts?.attributes?.seo?.thumbnail?.data?.attributes?.url ||
+                        posts?.attributes?.thumbnail?.data?.attributes?.url
                     )
                 }
             />
@@ -102,16 +98,16 @@ export default function BLogPost({
                 <Box bgcolor={"#f8f8f8"}>
                     <Container maxWidth={globalConfig.maxWidth}>
                         <Stack py={8} spacing={2}>
-                            <Link href={`/category/${posts?.data?.attributes?.blog_category?.data?.attributes?.slug}`}>
+                            <Link href={`/category/${posts?.attributes?.blog_category?.data?.attributes?.slug}`}>
                                 <Stack direction={"row"} alignItems={"center"} spacing={1}>
                                     <WestIcon fontSize="15"/>
                                     <Typography variant="body2" fontWeight={500}>
-                                        Quay lại trang {posts?.data?.attributes?.blog_category?.data?.attributes?.name}
+                                        Quay lại trang {posts?.attributes?.blog_category?.data?.attributes?.name}
                                     </Typography>
                                 </Stack>
                             </Link>
                             <Typography variant="h1" component={"h1"}>
-                                {posts?.data?.attributes?.title}
+                                {posts?.attributes?.title}
                             </Typography>
                         </Stack>
                     </Container>

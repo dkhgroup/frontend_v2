@@ -12,7 +12,7 @@ export default function MostViewPost({datas}){
                 {datas?.map(item => 
                     <PostList
                         key={item.id}
-                        link={`/blog/${item?.attributes?.slug}_id=${item.id}`}
+                        link={`/${item?.attributes?.slug}`}
                         thumbnail={`${globalConfig.img_url}${item?.attributes?.thumbnail?.data?.attributes?.url}`}
                         width={item?.attributes?.thumbnail?.data?.attributes?.width || 599}
                         height={item?.attributes?.thumbnail?.data?.attributes?.height || 300}

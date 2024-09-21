@@ -41,7 +41,7 @@ export default function StaticPage({
                         {posts && posts?.data?.map(item =>
                             <Stack spacing={2} key={item.id}>
                                 <Link
-                                    href={`/page/${item?.attributes?.slug}_id=${item.id}`} 
+                                    href={`/${item?.attributes?.slug}`} 
                                     key={item.id}
                                 >
                                     <Typography 

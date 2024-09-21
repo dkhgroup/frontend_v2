@@ -31,7 +31,7 @@ export default function ListPost(){
             <Stack spacing={1} divider={<Divider />}>
                 {listPage && listPage?.data?.map(item =>
                     <Link 
-                        href={`/page/${item.attributes?.slug}_id=${item.id}`}
+                        href={`/${item.attributes?.slug}`}
                         key={item.id}
                     >
                         <Stack direction={"row"} spacing={1} alignItems={"center"}>

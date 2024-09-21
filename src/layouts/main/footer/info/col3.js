@@ -15,7 +15,7 @@ export default function FooterInfotSection3(){
             <Stack spacing={1}>
                 {listPage && listPage?.data?.map(item =>
                     <Link
-                        href={`/page/${item.attributes?.slug}_id=${item.id}`}
+                        href={`/${item.attributes?.slug}`}
                         key={item.id}
                         underline="none"
                     >

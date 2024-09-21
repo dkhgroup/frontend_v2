@@ -28,11 +28,11 @@ export function getAttributes(data,selectAttribute){
     data?.attributes?.map(item => {
         if(item.property?.id != selectAttribute) return;
         result = {
-            thumbnail: cdnImage(item.thumbnail.url, '/assets/empty-product-thumbnail.png'),
-            productName: data.name,
-            property: item.property.name,
+            thumbnail: cdnImage(item?.thumbnail?.url, '/assets/empty-product-thumbnail.png'),
+            productName: data?.name,
+            property: item?.property?.name,
             qty: 1,
-            price: +data.price
+            price: +data?.price
         }
     })
 
