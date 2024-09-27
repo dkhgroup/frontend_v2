@@ -45,7 +45,7 @@ export async function getStaticPaths() {
     // Get the paths we want to pre-render based on posts
     const paths = posts?.data?.map((post) => ({
         params: { 
-            slug: `${post.slug}`
+            slug: `${post.attributes.slug}`
         },
     }))
    

@@ -9,7 +9,7 @@ import { useSearchProduct } from "@/hooks/useSearchProduct";
 import SearchProductInput from "./input";
 import KeywordSearchProduct from "./keyword";
 import ResultSearch from "./result";
-import searchEvent from "@/components/ga4";
+import {searchEvent} from "@/components/ga4";
 
 export default function SearchModal({open,setOpen}){
 

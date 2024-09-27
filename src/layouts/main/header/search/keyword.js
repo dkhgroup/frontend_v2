@@ -1,5 +1,5 @@
 import axiosClient from "@/axiosConfig/axiosClient";
-import searchEvent from "@/components/ga4";
+import {searchEvent} from "@/components/ga4";
 import { convertPopulateParams } from "@/params/convert";
 import { productParams } from "@/params/products";
 import { Chip, Stack, Typography } from "@mui/material";
