@@ -19,15 +19,15 @@ export function createMarkup(data) {
 export function formatContent(content){
     let result;
 
-    result = content.replace(/<h2/g, function() {
+    result = content?.replace(/<h2/g, function() {
         return `<h2 id="${makeid(10)}"`;
     });
 
-    result = result.replace(/<h3/g, function() {
+    result = result?.replace(/<h3/g, function() {
         return `<h3 id="${makeid(10)}"`;
     });
 
-    result = result.replace(/<h4/g, function() {
+    result = result?.replace(/<h4/g, function() {
         return `<h4 id="${makeid(10)}"`;
     });
       

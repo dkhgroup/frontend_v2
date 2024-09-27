@@ -69,7 +69,7 @@ export default function ProductGrid({
                             }}
                         >
                             <Image
-                                src={`${globalConfig.img_url}${data?.tag_img?.data?.attributes?.url}`}
+                                src={`${data?.tag_img?.data?.attributes?.url}`}
                                 width={200}
                                 height={47}
                                 alt={data?.thumbnail?.data?.attributes?.alternativeText || "Khuyến mại DKH Group"}

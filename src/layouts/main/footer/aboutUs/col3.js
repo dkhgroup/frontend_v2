@@ -3,7 +3,6 @@ import { Skeleton, Stack,Link } from "@mui/material";
 import Image from "next/image";
 
 export default function FooterAboutUsSection3({contact}){
-    
 
     return(
         <Stack 
@@ -13,11 +12,10 @@ export default function FooterAboutUsSection3({contact}){
             {!contact && <Skeleton variant="circular" width={40} height={40} />}
             {contact && contact?.data?.attributes?.social?.map(item =>
                 <Link href={item.link} key={item.id}>
-                    <Image
-                        src={cdnImage(item?.icon?.data?.attributes?.url,'/assets/fb.svg')}
+                    <img 
+                        src={item?.icon?.data?.attributes?.url} 
                         width={40}
                         height={40}
-                        alt="DKGroup Fanpage"
                     />
                 </Link>
             )}

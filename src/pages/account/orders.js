@@ -24,7 +24,7 @@ export default function HistoryOrderPage({
 
 export async function getStaticProps() {
   
-    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlNavbar = `${globalConfig.api_url}/menus/${globalConfig.menuId}?nested&populate=*`
     const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
     const getNavBar = await fetch(urlNavbar)
     const getFooter = await fetch(urlFooter)

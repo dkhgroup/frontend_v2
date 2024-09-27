@@ -46,13 +46,16 @@ export default function TuyenDungPage({ posts,category,footer,navbar }){
 }
 
 export async function getStaticProps() {
-    const res = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[blog_category][$eq]=2&sort[0]=id:desc`)
+
+    const categoryId = 4
+
+    const res = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[blog_category][$eq]=${categoryId}&sort[0]=id:desc`)
     const posts = await res.json()
 
-    const res2 = await fetch(`${globalConfig.api_url}/blog-categories/2`)
+    const res2 = await fetch(`${globalConfig.api_url}/blog-categories/${categoryId}`)
     const category = await res2.json()
 
-    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlNavbar = `${globalConfig.api_url}/menus/${globalConfig.menuId}?nested&populate=*`
     const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
     const getNavBar = await fetch(urlNavbar)
     const getFooter = await fetch(urlFooter)

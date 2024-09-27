@@ -25,6 +25,8 @@ export default async function handleApi(req, res) {
         'deviceId': device_id
     }
 
+    console.log(`${process.env.API_URL}/${endpoint}`)
+
     let config = {
         method: req.method,
         maxBodyLength: Infinity,

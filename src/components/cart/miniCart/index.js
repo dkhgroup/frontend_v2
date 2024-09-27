@@ -7,6 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/store/hook"
 
 import { IconX } from "@tabler/icons-react";
 import { useEffect } from "react";
+import { cdnImage } from "@/components/ui/cdnImage";
 
 export default function MiniCart(){
 
@@ -36,7 +37,7 @@ export default function MiniCart(){
                         <Stack direction={"row"} justifyContent={"space-between"} alignItems={"center"} spacing={1}>
                             <Box>
                                 <Image
-                                    src={miniCart?.item?.thumbnail || '/assets/empty-product-thumbnail.png'}
+                                    src={miniCart?.item?.thumbnail ||'/assets/empty-product-thumbnail.png'}
                                     width={60}
                                     height={60}
                                     alt=""

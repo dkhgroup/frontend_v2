@@ -21,6 +21,7 @@ export default function ListProductCategory({ ...props }) {
     const [loading,setLoading] = useState(false)
     const [loadingSort, setLoadingSort] = useState(false)
 
+
     const {products,isLoading,refreshProductList} = useProductCategory(props?.id)
 
     const handleClick = async () => {

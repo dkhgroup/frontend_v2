@@ -21,6 +21,7 @@ export default function AllProductHomepageTab({ datas }) {
             const url = `/open/products?${convertPopulateParams(productParams)}&pagination[page]=1&pagination[pageSize]=${currentProductNum + 4}&sort[0]=sort_number:asc&sort[1]=id:desc`
             // const url = `/open/products?${convertPopulateParams(productParams)}&pagination[page]=1&pagination[pageSize]=${currentProductNum + 4}`
             const request = await axiosClient.get(url)
+            console.log("🚀 ~ handleClick ~ request:", request)
             setCurrentProductNum(currentProductNum + 4)
             setProducts(request)
         } catch (error) {

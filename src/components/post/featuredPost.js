@@ -13,7 +13,7 @@ export default function FeaturedPost({datas}){
                 <PostGrid
                     key={item.id}
                     link={`/${item?.attributes?.slug}`}
-                    thumbnail={`${globalConfig.img_url}${item?.attributes?.thumbnail?.data?.attributes?.url}`}
+                    thumbnail={`${item?.attributes?.thumbnail?.data?.attributes?.url}`}
                     width={item?.attributes?.thumbnail?.data?.attributes?.width || 599}
                     height={item?.attributes?.thumbnail?.data?.attributes?.height || 300}
                     linkCat={`/category/${item?.attributes?.blog_category?.data?.attributes?.slug}`}

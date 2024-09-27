@@ -65,7 +65,10 @@ export default function TinTucPage({ posts, featured,mostview,category,footer,na
 }
 
 export async function getStaticProps() {
-    const res = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[blog_category][$eq]=1&sort[0]=id:desc`)
+
+    const blogId = 3
+
+    const res = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[blog_category][$eq]=${blogId}&sort[0]=id:desc`)
     const posts = await res.json()
 
     const res1 = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[featured][$eq]=true&pagination[limit]=1&sort[0]=id:desc`)
@@ -74,10 +77,10 @@ export async function getStaticProps() {
     const res2 = await fetch(`${globalConfig.api_url}/blogs?populate=*&filters[most_view][$eq]=true&pagination[limit]=4&sort[0]=id:desc`)
     const mostview = await res2.json()
 
-    const res3 = await fetch(`${globalConfig.api_url}/blog-categories/1`)
+    const res3 = await fetch(`${globalConfig.api_url}/blog-categories/${blogId}`)
     const category = await res3.json()
 
-    const urlNavbar = `${globalConfig.api_url}/menus/5?nested&populate=*`
+    const urlNavbar = `${globalConfig.api_url}/menus/${globalConfig.menuId}?nested&populate=*`
     const urlFooter = `${globalConfig.api_url}/contact?populate[0]=Hotline&populate[1]=Email&populate[2]=social&populate[3]=social.icon&populate[4]=img_copyright&populate[5]=img_copyright.image`
     const getNavBar = await fetch(urlNavbar)
     const getFooter = await fetch(urlFooter)

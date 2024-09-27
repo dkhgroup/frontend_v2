@@ -1,4 +1,5 @@
 import { createMarkup } from "@/components/createMarkup";
+import { cdnImage } from "@/components/ui/cdnImage";
 import SvgIconDkh from "@/components/ui/svgIcon";
 import { globalConfig } from "@/theme/globalConfig";
 import { Box, Stack, Typography } from "@mui/material";
@@ -45,7 +46,7 @@ export default function FeatureContent({data}){
                     }}
                 >
                     <Image
-                        src={data?.img_featured?.url ? `${globalConfig.img_url}${data?.img_featured?.url}` : '/assets/default-product-thumbnail.png'}
+                        src={cdnImage(data?.img_featured?.url,'/assets/default-product-thumbnail.png')}
                         width={data?.img_featured?.width || 567}
                         height={data?.img_featured?.height || 496}
                         alt={data?.name}
