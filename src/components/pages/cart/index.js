@@ -36,9 +36,9 @@ export default function CheckOutform() {
             phone:  "",
             email: "",
             address: "",
-            region: 1,
-            district: 676,
-            ward: 11027,
+            region: 64,
+            district: 1395,
+            ward: 22622,
             note: ""
         },
         validationSchema: checkoutValidation,
