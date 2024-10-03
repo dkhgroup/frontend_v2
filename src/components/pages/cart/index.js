@@ -72,7 +72,7 @@ export default function CheckOutform() {
                 await emptyCart()
 
                 router.push(`/cart/success?code=${createOrder.order_code}`)
-
+                
             } catch (error) {
                 console.log("🚀 ~ onSubmit: ~ error:", error)
             }
