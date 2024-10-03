@@ -51,7 +51,7 @@ export default function CheckOutform() {
                     subtotal: getTotalCart(cart),
                     shipfee:0,
                     total: getTotalCart(cart),
-                    payment_method:1,
+                    payment_method:2,
                     items: formatCartItem(cart.cart_items),
                     cartItemIdArr: getCartItem(cart.cart_items)
                 }
