@@ -9,13 +9,19 @@ import Swal from "sweetalert2";
 import axiosClient from "@/axiosConfig/axiosClient";
 
 const generateRecaptcha = () => {
-    window.recaptchaVerifier = new RecaptchaVerifier(
-        authFirebase,
-        "recaptcha-container",
-        {
-          size: 'invisible',
-        },
-    );
+    try{
+        const recaptcha = new RecaptchaVerifier(
+            authFirebase,
+            "recaptcha-container",
+            {
+              size: 'invisible',
+            },
+        );
+        console.log(recaptcha)
+    }catch(e){
+        console.log(e)
+    }
+    
 };
 
 export default function ForgotPasswordForm({...props}){
