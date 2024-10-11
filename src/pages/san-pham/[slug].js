@@ -41,6 +41,7 @@ export default function ProductDetailPage({
                         data?.thumbnail?.url
                     )
                 }
+                url={`/san-pham/${data?.slug}`}
             />
             <Stack spacing={0}>
                 <BreakCrumbProductDetail data={data}/>

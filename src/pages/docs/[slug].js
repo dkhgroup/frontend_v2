@@ -57,7 +57,6 @@ export default function BLogPost({
     navbar,
     footer
 }){
-
     return(
         <MainLayout posts={posts} footer={footer} navbar={navbar}>
             <SeoMetaTag
@@ -69,6 +68,7 @@ export default function BLogPost({
                         posts?.data?.attributes?.thumbnail?.data?.attributes?.url
                     )
                 }
+                url={`/docs/${posts?.data?.attributes?.slug}`}
             />
             <Stack spacing={0}>
 

@@ -13,6 +13,7 @@ export default function StaticPage({posts,navbar,footer}){
                 title="Hướng dẫn sử dụng các sản phẩm DKHGroup"
                 description="Hướng dẫn sử dụng các sản phẩm DKHGroup"
                 thumbnail={cdnImage()}
+                url={`/docs`}
             />
             <Stack spacing={0}>
                 <Box py={5} bgcolor={"#f8f8f8"}>

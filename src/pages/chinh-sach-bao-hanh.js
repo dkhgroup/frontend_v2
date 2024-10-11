@@ -52,6 +52,7 @@ export default function Dieukhoan({
                         data?.attributes?.thumbnail?.data?.attributes?.url
                     )
                 }
+                url={`/chinh-sach-bao-hanh`}
             />
             {data ?
                 <Stack spacing={0}>

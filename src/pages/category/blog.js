@@ -15,6 +15,7 @@ export default function TinTucPage({ posts, featured,mostview,category,footer,na
             <SeoMetaTag
                 title={category?.data?.attributes?.name}
                 description={category?.data?.attributes?.description}
+                url={`/category/${category?.data?.attributes?.slug}`}
             />
 
             <Stack spacing={0}>

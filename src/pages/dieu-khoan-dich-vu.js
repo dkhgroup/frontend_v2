@@ -52,6 +52,7 @@ export default function Dieukhoan({
                         data?.attributes?.thumbnail?.data?.attributes?.url
                     )
                 }
+                url="/dieu-khoan-dich-vu"
             />
             {data ?
                 <Stack spacing={0}>

@@ -16,6 +16,7 @@ export default function AboutUsPage({ post,navbar,footer }) {
                     "DKH Group được thành lập với một mục đích rất rõ ràng: chúng tôi muốn mang đến cho thị trường những sản phẩm chất lượng cao về đồ da, thời trang và dược phẩm"
                 }
                 thumbnail={cdnImage(post?.data?.attributes?.seo?.thumbnail?.data?.attributes?.url)}
+                url="/ve-dkh-group"
             />
             <AboutUsHeroSection post={post} />
             <AboutUsSection post={post} />

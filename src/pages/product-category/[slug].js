@@ -27,6 +27,7 @@ export default function CollectionProductPage({
                         data?.thumbnail?.data?.attributes?.url
                     )
                 }
+                url={`/product-category/${data.slug}`}
             />
             <Stack spacing={0}>
                 <Box bgcolor={"#f2f2f2"}>

@@ -12,7 +12,6 @@ export default function PostSlug({
     footer,
     posts
  }){
-    console.log("🚀 ~ posts:", posts)
     const data = blogCategory?.data?.[0]?.attributes
 
     return(
@@ -20,6 +19,7 @@ export default function PostSlug({
             <SeoMetaTag
                 title={data?.name}
                 description={data?.description}
+                url={data?.slug}
             />
 
             <Stack spacing={0}>

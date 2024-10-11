@@ -24,6 +24,7 @@ export default function StaticPage({
                         posts?.data?.attributes?.thumbnail?.data?.attributes?.url
                     )
                 }
+                url={`/page/${posts?.data?.attributes?.slug}`}
             />
             <Box py={5} bgcolor={"#f8f8f8"}>
                 <Container maxWidth={globalConfig.maxWidth}>

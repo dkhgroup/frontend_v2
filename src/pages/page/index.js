@@ -17,6 +17,7 @@ export default function StaticPage({
                 title="Các trang nội dung tĩnh từ DKHGroup"
                 description="Các trang nội dung tĩnh từ DKHGroup"
                 thumbnail={cdnImage()}
+                url="/page"
             />
             <Stack spacing={0}>
                 <Box py={5} bgcolor={"#f8f8f8"}>

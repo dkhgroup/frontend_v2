@@ -48,6 +48,14 @@ export default function AddToCart(props){
                 "property": props.selectAttribute,
                 "qty": 1
             })
+        } catch (error) {
+            toast.error('Thêm sản phẩm thất bại',{
+                duration: 4000,
+                position: 'top-right'
+            })
+        }
+
+        try{
 
             // handle GA
 
@@ -83,10 +91,10 @@ export default function AddToCart(props){
             dispatch(showMiniCart(miniCartData))
 
         } catch (error) {
-            toast.error('Thêm sản phẩm thất bại',{
-                duration: 4000,
-                position: 'top-right'
-            })
+            // toast.error('Thêm sản phẩm thất bại',{
+            //     duration: 4000,
+            //     position: 'top-right'
+            // })
         }
         setLoading(false)
     }
