@@ -35,7 +35,7 @@ export default function MyApp(props) {
 
   const router = useRouter()
 
-  React.useEffect(()=>{
+  React.useEffect(() => {
     import('react-facebook-pixel')
       .then((x) => x.default)
       .then((ReactPixel) => {
@@ -46,7 +46,7 @@ export default function MyApp(props) {
           ReactPixel.pageView()
         })
       })
-  },[router.events])
+  }, [router.events])
 
   const storeRef = React.useRef()
   if (!storeRef.current) {
@@ -62,22 +62,22 @@ export default function MyApp(props) {
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
       <CacheProvider value={cache}>
-      <ThemeProvider theme={theme}>
-        <SWRConfig value={{fetcher: url => axiosClient.get(url), shouldRetryOnError: true}}>
-          <CssBaseline />
+        <ThemeProvider theme={theme}>
+          <SWRConfig value={{ fetcher: url => axiosClient.get(url), shouldRetryOnError: true }}>
+            <CssBaseline />
             <Provider store={storeRef.current}>
-              <Layout>
-                  <FBPixelScript />
-                  <GoogleAnalytics trackPageViews/>
-                  <FBPixelProvider>
-                    <Component {...pageProps} />
-                  </FBPixelProvider>
+              <GoogleAnalytics trackPageViews />
+              <FBPixelScript />
+              <FBPixelProvider>
+                <Layout>
+                  <Component {...pageProps} />
                   <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
-              </Layout>
+                </Layout>
+              </FBPixelProvider>
             </Provider>
-          <Toaster position="top-right" />
-        </SWRConfig>
-      </ThemeProvider>
+            <Toaster position="top-right" />
+          </SWRConfig>
+        </ThemeProvider>
       </CacheProvider>
     </AppCacheProvider>
   );
