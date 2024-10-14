@@ -23,6 +23,7 @@ import createEmotionCache from '@/theme/createEmotionCache';
 import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-api-nextjs/components';
 import EmptyLayout from '@/layouts/empty';
 import Script from 'next/script';
+import { capiConfig } from '@/components/capi/config';
 
 export default function MyApp(props) {
 
@@ -38,7 +39,7 @@ export default function MyApp(props) {
     import('react-facebook-pixel')
       .then((x) => x.default)
       .then((ReactPixel) => {
-        ReactPixel.init('232572856616426') // facebookPixelId
+        ReactPixel.init(capiConfig.pixel_id) // facebookPixelId
         ReactPixel.pageView()
 
         router.events.on('routeChangeComplete', () => {

@@ -6,7 +6,7 @@ export const globalConfig = {
     // api_url: 'http://localhost:1337/api',
     img_url: 'https://cdn.dkhgroup.com.vn',
     frontEndVersion: 'v1',
-    gaId: 'G-PVLDS2X7NT',
+    gaId: 'G-2X445KEF6T',
     // fontEndUrl: "https://dev.dkhgroup.com.vn"
     fontEndUrl: "http://localhost:3000",
     menuId: 2,

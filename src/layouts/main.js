@@ -12,7 +12,7 @@ export default function MainLayout({footer,navbar,children}){
     useEffect(()=>{
 
         // Start seeing data on the Clarity dashboard with your id
-        clarity.init("mdthcfppnc");
+        clarity.init("m50wxksnd5");
 
         // Identify the user
         clarity.identify('USER_ID', { userProperty: 'value' });
@@ -28,7 +28,7 @@ export default function MainLayout({footer,navbar,children}){
 
         // Check if Clarity has been initialized before calling its methods
         if (clarity.hasStarted()) {
-            clarity.identify('mdthcfppnc', { userProperty: 'value' });
+            clarity.identify('m50wxksnd5', { userProperty: 'value' });
         }
         
     },[])
