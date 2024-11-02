@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
 
-    const url = process.env.API_URL + '/products?pagination[page]=1&pagination[pageSize]=100&populate[0]=attributes&populate[1]=attributes.property&&populate[2]=thumbnail&populate[3]=product_categories'
+    const url = process.env.API_URL + '/products?pagination[page]=1&pagination[pageSize]=100&populate[0]=attributes&populate[1]=attributes.property&populate[2]=attributes.thumbnail&populate[3]=thumbnail&populate[4]=product_categories'
 
     const getAllProduct = await axios.get(url)
     const allProduct = getAllProduct.data.data
@@ -26,7 +26,7 @@ export default async function handler(req, res) {
             <g:title>${selectProduct?.name}</g:title>
             <g:description>${selectProduct?.name}, color ${item.property.data.attributes.name}</g:description>
             <g:link>https://dkhgroup.com.vn/san-pham/${selectProduct?.slug}</g:link>
-            <g:image_link>${selectProduct?.thumbnail?.data?.attributes?.url}</g:image_link>
+            <g:image_link>${item?.thumbnail?.data?.attributes?.url}</g:image_link>
             <g:brand>Maldini</g:brand>
             <g:condition>new</g:condition>
             <g:availability>in stock</g:availability>
