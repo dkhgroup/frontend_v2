@@ -8,7 +8,7 @@ function formatDataCategories(data){
         {
             id: item.id,
             text: item.name,
-            link: `/collection/${item.slug}`
+            link: `/product-category/${item.slug}`
         }
     )) 
 
