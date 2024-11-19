@@ -2,7 +2,7 @@ import axios from "axios";
 
 export default async function handler(req, res) {
 
-    const url = process.env.API_URL + '/products?pagination[page]=1&pagination[pageSize]=100&populate=*'
+    const url = process.env.API_URL + '/products?pagination[page]=1&pagination[pageSize]=100&populate[0]=thumbnail&populate[1]=product_categories'
 
     const getAllProduct = await axios.get(url)
     const allProduct = getAllProduct.data.data
@@ -19,6 +19,7 @@ export default async function handler(req, res) {
             <g:id>${item.attributes.sku}</g:id>
             <g:title>${item.attributes.name}</g:title>
             <g:description>${item.attributes.description}</g:description>
+            <g:category>${item.attributes?.product_categories?.data?.[0]?.attributes?.name}</g:category>
             <g:link>https://dkhgroup.com.vn/san-pham/${item.attributes.slug}</g:link> 
             <g:image_link>${item.attributes.thumbnail.data.attributes.url}</g:image_link> 
             <g:condition>new</g:condition>

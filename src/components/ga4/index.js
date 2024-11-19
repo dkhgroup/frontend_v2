@@ -51,6 +51,17 @@ export function viewItemEvent(data){
         items: items
     })
     
+    // gtag('event', 'view_item', {
+    //     'items': [
+    //         {
+    //             'id': data?.sku,   // ID sản phẩm
+    //             'name': data?.name, // Tên sản phẩm
+    //             'category': data?.product_categories[0]?.name, // Danh mục sản phẩm
+    //             'price': +data?.price // Giá sản phẩm
+    //         }
+    //     ]
+    // });
+
     return
 }
 

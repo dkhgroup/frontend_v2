@@ -10,4 +10,5 @@ export const globalConfig = {
     fontEndUrl: "https://dkhgroup.com.vn",
     //fontEndUrl: "http://localhost:3000",
     menuId: 2,
+    gtagId: 'AW-355238940'
 }

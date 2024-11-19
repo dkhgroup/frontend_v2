@@ -24,6 +24,7 @@ import { FBPixelScript, FBPixelProvider } from '@rivercode/facebook-conversion-a
 import EmptyLayout from '@/layouts/empty';
 import Script from 'next/script';
 import { capiConfig } from '@/components/capi/config';
+import { GoogleTagInit } from '@/components/gtags/init';
 
 export default function MyApp(props) {
 
@@ -70,6 +71,7 @@ export default function MyApp(props) {
               <FBPixelScript />
               <FBPixelProvider>
                 <Layout>
+                  <GoogleTagInit />
                   <Component {...pageProps} />
                   <Script src="https://www.youtube.com/iframe_api" strategy="afterInteractive" />
                 </Layout>
