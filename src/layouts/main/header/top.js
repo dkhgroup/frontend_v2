@@ -41,13 +41,13 @@ export default function TopHeader(){
                                 </Link>
                             )}
 
-                            <Link 
+                            {/* <Link 
                                 href={userData ? '/account' : '/login'}
                             >
                                 <Typography variant="body2" fontWeight={600} lineHeight={1} fontSize={13} sx={styles.item}>
                                     {userData ? `Xin chào ! ${userData?.fullname}` : "Đăng nhập"}
                                 </Typography>
-                            </Link>
+                            </Link> */}
                         </Stack>
                     </Grid>
 

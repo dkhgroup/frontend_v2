@@ -31,12 +31,12 @@ export default function MainNav({navbar}) {
                             </ul>
                         </nav>
                     </Grid>
-                    <Grid xs={2} display={{ xs: 'none', lg: 'block' }}>
+                    <Grid xs={3} display={{ xs: 'none', lg: 'block' }}>
                         <SearchBoxHeader />
                     </Grid>
-                    <Grid xs={1} display={{ xs: 'none', lg: 'block' }}>
+                    {/* <Grid xs={1} display={{ xs: 'none', lg: 'block' }}>
                         <IconHeader />
-                    </Grid>
+                    </Grid> */}
                 </Grid>
             </Container>
         </Box>

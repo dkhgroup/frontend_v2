@@ -116,7 +116,7 @@ export default function ProductGrid({
                     </Typography>
                 </Stack>
 
-                <Stack
+                {/* <Stack
                     spacing={2}
                     direction={{
                         xs: "column",
@@ -129,7 +129,7 @@ export default function ProductGrid({
                         <FormatCurrency data={data?.price} />
                     </Typography>
                     {selectAttribute && <AddToCart selectAttribute={selectAttribute} data={data} id={id}/>}
-                </Stack>
+                </Stack> */}
 
             </Box>
         </Stack>

@@ -104,7 +104,14 @@ export default function InfoProductDetail({data}){
                     <Grid xs={12} md={5}>
                         <Stack spacing={2.5}>
                             <ProductDetailTitle data={data}/>
-                            <ProductDetailPrice data={data}/>
+                            {/* <ProductDetailPrice data={data}/> */}
+                            <Box component={"p"} sx={{
+                                fontSize: 20,
+                                fontWeight: 700,
+                                color: "primary.main"
+                            }}>
+                                Giá: Liên hệ
+                            </Box>
                             <ProductDetailAttriButes
                                 data={data} 
                                 selectAttribute={selectAttribute}
@@ -113,14 +120,14 @@ export default function InfoProductDetail({data}){
                                 setGallery={setGallery}
                                 gallaryProduct={gallaryProduct}
                             />
-                            <AddtoCartGroup
+                            {/* <AddtoCartGroup
                                 data={data} 
                                 selectAttribute={selectAttribute}
                                 formik={formik}
                                 loading={loading}
-                            />
+                            /> */}
                             <ChatZaloOaBtn />
-                            <KeypointProduct data={data} />
+                            {/* <KeypointProduct data={data} /> */}
                             <FeatureNote data={data} />
                         </Stack>
                     </Grid>
