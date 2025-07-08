@@ -1,24 +1,18 @@
-import { clickZaloBtnProductDetail } from "@/components/ga4";
-import { useContact } from "@/hooks/useContact";
-import { Button, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { IconArrowNarrowRight } from "@tabler/icons-react";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
 
 export default function ChatZaloOaBtn(){
-    const {contact, isLoading} = useContact()
-    const router = useRouter()
 
-    const handleClickOa = (zaloId) => {
-        clickZaloBtnProductDetail()
-        router.push(`https://zalo.me/${zaloId}`)
-    }
-
-    if(isLoading) return
 
     return(
-        <Stack style={{cursor: "pointer"}} direction={"row"} alignItems={"center"} spacing={1} onClick={()=>handleClickOa(contact?.data?.attributes?.zalo_main)}>
+        <a href="https://zalo.me/0962663459" target="_blank" rel="noopener noreferrer">
+        <Stack 
+            style={{cursor: "pointer"}}
+            direction={"row"}
+            alignItems={"center"}
+            spacing={1}
+        >
             <Image
                 src={'/assets/zalo-icon.svg'}
                 width={20}
@@ -30,5 +24,6 @@ export default function ChatZaloOaBtn(){
             </Typography>
             <IconArrowNarrowRight fontSize={15} color="#555555" />
         </Stack>
+        </a>
     )
 }

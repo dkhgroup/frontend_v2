@@ -10,9 +10,9 @@ export default function SpeedDialButtonDefault({contact}){
     
     const router = useRouter()
 
-    const clickZalo = (zaloId) => {
-        clickZaloBtn()
-        router.push(`https://zalo.me/${zaloId}`)
+    const clickZalo = () => {
+        // clickZaloBtn()
+        router.push(`https://zalo.me/0962663459`)
     }
     const clickHotline = (hotline) => {
         clickHotlineBtn()
@@ -51,7 +51,7 @@ export default function SpeedDialButtonDefault({contact}){
                 <SpeedDialAction
                     icon={<Image src={"/assets/zalo-icon.svg"} width={30} height={30} alt="Zalo"/>}
                     tooltipTitle={`Zalo: ${contact?.data?.attributes?.zalo_main}`}
-                    onClick={() => clickZalo(contact?.data?.attributes?.zalo_main)}
+                    onClick={() => clickZalo()}
                 />
 
             </SpeedDial>
