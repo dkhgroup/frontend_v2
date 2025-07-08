@@ -27,7 +27,7 @@ export default function TopHeader(){
 
                     <Grid xs={12} lg={6}>
                         <Typography variant="body2" fontWeight={600} letterSpacing={-.5} color="#fafafa" lineHeight={1} fontSize={13}>
-                            Địa chỉ: P.A8 - CT2 Tòa nhà The Pride - Tố Hữu, La Khê, Hà Đông, Hà Nội
+                            Địa chỉ: CT2 tòa nhà The Pride - khu đô thị mới An Hưng - phường Hà Đông - Thành phố Hà Nội
                         </Typography>
                     </Grid>
 
