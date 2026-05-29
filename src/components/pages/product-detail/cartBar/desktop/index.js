@@ -3,10 +3,12 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Fade from "@mui/material/Fade";
 import { Container, Divider, Stack } from "@mui/material";
 import { globalConfig } from "@/theme/globalConfig";
-import AddtoCartGroup from "@/components/pages/product-detail/info/addToCart";
+// import AddtoCartGroup from "@/components/pages/product-detail/info/addToCart";
 
 import InfoProduct from "./infoProduct";
 import PropertyProduct from "./properties";
+
+import ChatZaloOaBtn from "../../info/chatZalo";
 
 export default function CartBarDesktop(props) {
   const { window } = props;
@@ -37,12 +39,13 @@ export default function CartBarDesktop(props) {
               selectAttribute={props?.selectAttribute}
               setSelectAttribute={props.setSelectAttribute}
             />
-            <AddtoCartGroup
+            <ChatZaloOaBtn />
+            {/* <AddtoCartGroup
               data={props.data} 
               selectAttribute={props?.selectAttribute}
               setSelectAttribute={props.setSelectAttribute}
               formik={props.formik}
-            />
+            /> */}
           </Stack>
         </Container>
       </Stack>

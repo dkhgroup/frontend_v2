@@ -104,7 +104,9 @@ export default function InfoProductDetail({data}){
                     <Grid xs={12} md={5}>
                         <Stack spacing={2.5}>
                             <ProductDetailTitle data={data}/>
-                            {/* <ProductDetailPrice data={data}/> */}
+                            {data?.slug == "tui-clutch-dk-2025-da-bo-y" ?
+                            
+                            <ProductDetailPrice data={data}/> :
                             <Box component={"p"} sx={{
                                 fontSize: 20,
                                 fontWeight: 700,
@@ -112,6 +114,7 @@ export default function InfoProductDetail({data}){
                             }}>
                                 Giá: Liên hệ
                             </Box>
+                        }
                             <ProductDetailAttriButes
                                 data={data} 
                                 selectAttribute={selectAttribute}

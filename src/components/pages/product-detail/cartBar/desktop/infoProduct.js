@@ -8,7 +8,6 @@ export default function InfoProduct({data,selectAttribute}){
 
     const thumbnail = getAttributes(data,selectAttribute)
     const thisAttribute = data?.attributes?.find(item => item?.property?.id == selectAttribute)
-
     return(
         <Stack direction={"row"} spacing={1} alignItems={"center"}>
             <Image
@@ -22,7 +21,11 @@ export default function InfoProduct({data,selectAttribute}){
                     {data?.name} {thisAttribute && ` - ${thisAttribute?.property?.name}`}
                 </Typography>
                 <Typography fontWeight={700} fontSize={20} color="primary.main">
-                    <FormatCurrency data={data?.price} />
+                    {
+                        data?.slug == "tui-clutch-dk-2025-da-bo-y" ? <FormatCurrency data={data?.price} /> : "Liên hệ"
+                    }
+                    {/* Liên hệ */}
+                    {/* <FormatCurrency data={data?.price} /> */}
                 </Typography>
             </Stack>
         </Stack>
